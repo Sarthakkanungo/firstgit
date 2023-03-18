@@ -28,13 +28,25 @@
 
 // console.log(newDiv);
 // container.insertBefore(newDiv, h1);
+
+
+
+var form = document.getElementById('addForm');
+var itemlist1 = document.getElementById('items');
+var filter = document.getElementById('filter');
+
+
+//creating a edit button for every li Element.
+
 var items = document.getElementsByClassName("list-group-item");
+
+
 for(var i = 0 ; i < items.length ; i++)
 {
     // creating edit button 
     var Editbtn = document.createElement('button');
     // adding the same classes except delete class
-    Editbtn.className = "btn btn-danger btn-sm float-right ";
+    Editbtn.className = "btn btn-sm float-right ";
     // creating text node to store text
     var Editbtntext = document.createTextNode('Edit');
     // appending text in button
@@ -42,16 +54,9 @@ for(var i = 0 ; i < items.length ; i++)
 
     items[i].appendChild(Editbtn)
 }
-  
-  
- 
 
-console.log(1);
-console.log(1);
-var form = document.getElementById('addForm');
-var itemlist1 = document.getElementById('items');
-var filter = document.getElementById('filter');
 
+// event listener
 
 //form submit event 
 form.addEventListener('submit',addItem);
@@ -64,22 +69,27 @@ filter.addEventListener('keyup', filteritems);
 
 
 
-// add item
+// add item to the li list using addItem function which has two input tags.
+
 function addItem(e)
 {
      e.preventDefault();
     // Get input Value
     var newitem = document.getElementById('item').value;
+    var descriptionnode = document.getElementById('description').value;
     
     // create new li
     var li = document.createElement('li');
     
+    
      // Add a class name
      li.className = "list-group-item";
+    
 
     
     // Add text node with Input Value
     li.appendChild(document.createTextNode(newitem));
+    li.appendChild(document.createTextNode(" "+descriptionnode));
 
     // // create del button element 
         var deletebtn = document.createElement('button');
@@ -93,19 +103,25 @@ function addItem(e)
 
          // similarly creating an edit btn 
         var Editbtn = document.createElement('button');
-        Editbtn.className = "btn btn-danger btn-sm float-right";
+        Editbtn.className = "btn btn-sm float-right";
         var Editbtntext = document.createTextNode('Edit');
         Editbtn.appendChild(Editbtntext);  
          
     // append deletebtn to li 
          li.appendChild(deletebtn);
          li.appendChild(Editbtn);
+         
      
     // append li to list
       itemlist1.appendChild(li);
+      
 
 }
-      //remove item
+
+
+
+
+      //remove item function declaration
       function removeitem(e)
       {
         if(e.target.classList.contains('delete'))
@@ -113,6 +129,7 @@ function addItem(e)
             if(confirm('Are you sure?'))
             {
                var li = e.target.parentElement;
+               console.log(li);
                itemlist1.removeChild(li);
             }
         }
@@ -120,28 +137,29 @@ function addItem(e)
 
 
      
-// // filter item
-// function filteritems(e){
-//     // converting text to lowercase
-//     var text = e.target.value.toLowerCase();
+// filter item
+function filteritems(e){
+    // converting text to lowercase
+    var text = e.target.value.toLowerCase();
 
-//    // get lis
-//    var items1 = itemlist1.getElementsByTagName('li');
-//   // console.log(itemsnames);
+   // get lis
+   var items1 = itemlist1.getElementsByTagName('li');
+  // console.log(itemsnames);
 
-//    // convert them to array
-//    Array.from(items1).forEach(function(xyz){
-//     var itemName = xyz.firstChild.textContent;
-//     if(itemName.toLowerCase().indexOf(text) != -1)
-//     {
-//         xyz.style.display = 'block';
-//     }
-//     else
-//     {
-//         xyz.style.display = 'none';
-//     }
-//    })
+   // convert them to array
+   Array.from(items1).forEach(function(xyz){
+    var itemName = xyz.firstChild.textContent;
+    var description = xyz.firstChild.nextSibling.textContent;
+    if(itemName.toLowerCase().indexOf(text) !=-1 || description.toLowerCase().indexOf(text) != -1)
+    {
+        xyz.style.display = 'block';
+    }
+    else
+    {
+        xyz.style.display = 'none';
+    }
+   })
 
-// }
+}
 
 
