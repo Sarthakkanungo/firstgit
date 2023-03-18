@@ -34,6 +34,7 @@ console.log(title);
 
 // get element by class name
 var items = document.getElementsByClassName("list-group-item");
+console.log("elementsbyclassname");
 console.log(items);
 //console.log(items[1]);
 items[1].textContent = " Hello 2";
@@ -51,9 +52,12 @@ for(var i = 0; i < items.length;i++)
 
 items[2].style.backgroundColor = 'green';
 
+// get element by tag name
 
-
-
-
+ var newitem = document.getElementsByTagName('li');
+ console.log("elementbytagname");
+ console.log(newitem);
+ newitem[4].style.backgroundColor = "blue"; 
+ newitem[5].style.textDecorationLine ='none';
 
 
