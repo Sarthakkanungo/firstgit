@@ -59,5 +59,5 @@ items[2].style.backgroundColor = 'green';
  console.log(newitem);
  newitem[4].style.backgroundColor = "blue"; 
  newitem[5].style.textDecorationLine ='none';
-
+console.log (newitem);
 
