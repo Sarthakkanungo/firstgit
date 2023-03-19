@@ -10,7 +10,7 @@ myForm.addEventListener('submit' ,saveToLocalStorage);
 function saveToLocalStorage(event){
     
     event.preventDefault();
-    alert('Hi baby');
+    
     const name = event.target.username.value;
     const email = event.target.emailid.value;
     localStorage.setItem('name' ,name);
