@@ -23,7 +23,7 @@ function saveToLocalStorage(event){
  // Listen for form submit
 // for adding new li node as values put by user.
 
-const nameInput = document.querySelector('#name');
+/*const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
 const msg = document.querySelector('.msg');
 const userList = document.querySelector('#users');
@@ -60,7 +60,7 @@ function onSubmit(e) {
     nameInput.value = '';
     emailInput.value = '';
   }
-}
+}*/
 
 
  
