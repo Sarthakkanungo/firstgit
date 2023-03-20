@@ -7,17 +7,27 @@ const myForm = document.querySelector('#my-form');
 
 myForm.addEventListener('submit' ,saveToLocalStorage);
 
-function saveToLocalStorage(event){
+function saveToLocalStorage(event)
+{
     
     event.preventDefault();
+        const name = event.target.username.value;
+        const email = event.target.emailid.value;
+        //creating obj to store all values in an object
+
+    const obj = { 
+        name : name ,
+        email : email 
+       }
+   // converting object to its real values using JSON.stringify method ,,, and reverse it back as old object 
+   // by using JSON.parse(obj)  
+    localStorage.setItem('obj' , JSON.stringify(obj));
     
-    const name = event.target.username.value;
-    const email = event.target.emailid.value;
-    localStorage.setItem('name' ,name);
-    localStorage.setItem('email' ,email);
+   
  }
 
-
+ 
+ 
 
 
  // Listen for form submit
