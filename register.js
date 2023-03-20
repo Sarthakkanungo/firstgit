@@ -48,18 +48,44 @@ function saveToLocalStorage(event)
      const deletebutton = document.createElement('input');
      deletebutton.type = "button";
      deletebutton.value = " delete";
+     const Editbutton = document.createElement('input');
+     Editbutton.type = "button";
+     Editbutton.value = " Edit";
 
-     // onclick function
+     // onclick delete function
 
-     deletebutton.onclick = () => {
+       deletebutton.onclick = () => {
+        // deleting from local storage
        localStorage.removeItem(obj.email);
+       // deleting li from ul
        parentElem.removeChild(childELem);
 
      }
+ 
+     // onclick Edit function
+          Editbutton.onclick = () => {
+             // deleting from local storage
+          localStorage.removeItem(obj.email);
+           // deleting li from ul 
+          parentElem.removeChild(childELem);
+
+          nameInput.value = obj.name;
+          emailInput.value = obj.email;
+          phoneInput.value = obj.phone;
+          AddressInput.value = obj.Address;
+          TimeInput.value = obj.time;
+          DateInput.value = obj.date;
+
+
+      }
 
      // APPEND this button in "li " that is childElem and then into Ul with id users parentElem
       childELem.appendChild(deletebutton);
       parentElem.appendChild(childELem);
+
+      childELem.appendChild( Editbutton);
+      parentElem.appendChild(childELem);
+
       const nameInput = document.querySelector('#name');
       const emailInput = document.querySelector('#email');
       const phoneInput = document.querySelector('#phone');
