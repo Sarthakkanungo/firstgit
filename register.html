@@ -9,20 +9,37 @@
   </head>
   <body>
     <header>
-      <h1>JS For Beginners</h1>
+        <h1>Book An Appointment Call</h1>
     </header>
+    <h4>Enter all fields and submit form to get a call from our end.</h4>
 
     <section class="container">
       <form id="my-form">
-        <h1>Add User</h1>
+        <h1> User Detail </h1>
         <div class="msg"></div>
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name" name ="username">
+          <input type="text" id="name" name ="username"  placeholder="Enter your name" required>
         </div>
         <div>
           <label for="email">Email:</label>
-          <input type="text" id="email" name="emailid">
+          <input type="text" id="email" name="emailid" placeholder="Enter email id" required>
+        </div>
+        <div>
+          <label for="phone">Telephone:</label>
+          <input type="tel" id="phone" name="Phoneno" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+        </div>
+        <div>
+          <label for="add">Address:</label>
+          <input type="text" id="add" name="Address">
+        </div>
+        <div>
+            <label for="Date">Select Date and Time to Schedule call:</label>
+            <input type="date" id="Date" name="date" >
+            
+        </div>
+        <div>
+          <input type="time" id="Time1" name="time" >
         </div>
         <input class="btn" type="submit" value="Submit">
       </form>
