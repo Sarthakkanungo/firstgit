@@ -6,7 +6,7 @@ const myForm = document.querySelector('#my-form');
 // creating local storage for form submission
 
 myForm.addEventListener('submit' ,saveToLocalStorage);
- let dellocalkey=[];
+
 function saveToLocalStorage(event)
 {
     
@@ -119,7 +119,7 @@ function saveToLocalStorage(event)
 
 
 
-//const userList = document.querySelector('#users');
+// const userList = document.querySelector('#users');
 
 
 // function showUserData(obj) {
