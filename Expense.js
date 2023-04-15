@@ -8,7 +8,7 @@ Formsubmission.addEventListener('submit',saveToLocalStorage);
 function saveToLocalStorage(event)
 {
     
-       event.preventDefault();
+        event.preventDefault();
         const Expenseamt = event.target.Expense.value;
         const describe   = event.target.describe.value;
         const  category  = event.target.category.value;
@@ -70,10 +70,11 @@ function saveToLocalStorage(event)
 
      // APPEND this button in "li " that is childElem and then into Ul with id users parentElem
       childELem.appendChild(deletebutton);
-      parentElem.appendChild(childELem);
-
       childELem.appendChild( Editbutton);
       parentElem.appendChild(childELem);
+
+      
+     // parentElem.appendChild(childELem);
 
       const expenseamtInput = document.querySelector('#expenseamt');
       const descriptionInput = document.querySelector('#description');
