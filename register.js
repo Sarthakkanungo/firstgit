@@ -89,6 +89,18 @@ function saveToLocalStorage(event)
         ) 
       } 
 
+      // function editTheuserDetail(obj){
+      //   axios.put(`https://crudcrud.com/api/279e3a659c8e4ca3b589c44264051c4b/BookingAppointment/${obj._id}`)
+      //   .then((res)=>
+      //   {
+      //     console.log("Successfully Edited")
+      //   }).catch((err) =>
+      //   {
+      //   console.log(" Finding Difficult to Edit user from backend ")
+      //   } 
+      //   ) 
+      // }
+
 
  
  function showUserData(obj){
@@ -122,8 +134,11 @@ function saveToLocalStorage(event)
  
      // onclick Edit function
           Editbutton.onclick = () => {
-          
-            console.log("Successfully edited msg & below msg is for deleting it from backend")
+           // editTheuserDetail(obj);
+
+           removefrombackend(obj);
+           
+            console.log("Successfully edited it from backend")
              // deleting from local storage
              
             // localStorage.removeItem(obj.email);
@@ -137,7 +152,7 @@ function saveToLocalStorage(event)
           AddressInput.value = obj.Address;
           TimeInput.value = obj.time;
           DateInput.value = obj.date;
-          removefrombackend(obj);
+         
 
       }
 
