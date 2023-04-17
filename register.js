@@ -28,7 +28,7 @@ function saveToLocalStorage(event)
         Address : Address,
         date : date,
         time : time
-       }
+      }
        
 
 
@@ -47,18 +47,37 @@ function saveToLocalStorage(event)
               .then((response)=>
               {
                 showUserData(response.data);
-               // console.log(response);
+                console.log(response);
               }).catch((err) =>
               {
                 document.body.innerHTML = document.body.innerHTML + "<h4>Some Error Happened</h4>";
                 console.log(err);
               })
 
-
-            
-            
-
+          
  }
+
+
+ window.addEventListener("DOMContentLoaded" , ()=>
+ {
+   axios.get("https://crudcrud.com/api/9d3033edfa144854bb89e3514638bb08/BookAnAppointment")
+   .then((response)=>
+   {
+     console.log(response);
+     for(var i = 0; i < response.data.length ; i++)
+     {
+       showUserData(response.data[i]);
+     }
+
+   }).catch((err) =>
+   {
+     
+     console.log(err);
+
+
+   })
+
+ })
 
 
  function showUserData(obj){
