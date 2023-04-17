@@ -22,6 +22,7 @@ function saveToLocalStorage(event)
         //creating obj to store all values in an object
 
     const obj = { 
+        
         name : name,
         email : email,
         phone : phone,
@@ -36,50 +37,60 @@ function saveToLocalStorage(event)
    // by using JSON.parse(obj)  
      
         
-                //  localStorage.setItem(obj.email , JSON.stringify(obj));
+               //  localStorage.setItem(obj.email , JSON.stringify(obj));
                 // showUserData(obj);
 
 
-             //  commenting the locaL storage and making call to crud sever using axios api
-             
-             
-             axios.post("https://crudcrud.com/api/9d3033edfa144854bb89e3514638bb08/BookAnAppointment",obj)
-              .then((response)=>
-              {
-                showUserData(response.data);
-                console.log(response);
-              }).catch((err) =>
-              {
-                document.body.innerHTML = document.body.innerHTML + "<h4>Some Error Happened</h4>";
-                console.log(err);
-              })
-
-          
+               //  commenting the locaL storage and making call to crud sever using axios api
+              
+              
+          axios.post("https://crudcrud.com/api/279e3a659c8e4ca3b589c44264051c4b/BookingAppointment",obj)
+          .then((response)=>
+           {
+            showUserData(response.data);
+            console.log(response);
+             }).catch((err) =>
+           {
+            document.body.innerHTML = document.body.innerHTML + "<h4>Some Error Happened</h4>";
+            console.log(err);
+            })       
  }
 
 
  window.addEventListener("DOMContentLoaded" , ()=>
  {
-   axios.get("https://crudcrud.com/api/9d3033edfa144854bb89e3514638bb08/BookAnAppointment")
-   .then((response)=>
-   {
-     console.log(response);
-     for(var i = 0; i < response.data.length ; i++)
-     {
-       showUserData(response.data[i]);
-     }
+        axios.get("https://crudcrud.com/api/279e3a659c8e4ca3b589c44264051c4b/BookingAppointment")
+        .then((response)=>
+        {
+          console.log(response);
 
-   }).catch((err) =>
-   {
-     
-     console.log(err);
+          for(var i = 0; i < response.data.length ; i++)
+          {
+            showUserData(response.data[i]);
+          }
 
-
-   })
+        }).catch((err) =>
+        {
+          
+          console.log(err);
+        })
 
  })
 
 
+      function removefrombackend(obj){
+        axios.delete(`https://crudcrud.com/api/279e3a659c8e4ca3b589c44264051c4b/BookingAppointment/${obj._id}`)
+        .then((res)=>{
+        console.log("successfully deleted");
+        }).catch((err) =>
+        {
+        console.log(" Finding Difficult to delete user from backend ")
+        } 
+        ) 
+      } 
+
+
+ 
  function showUserData(obj){
      const parentElem = document.getElementById('users');
      const childELem = document.createElement('li');
@@ -88,25 +99,35 @@ function saveToLocalStorage(event)
  
      const deletebutton = document.createElement('input');
      deletebutton.type = "button";
-     deletebutton.value = " delete";
+     deletebutton.value = "delete";
      const Editbutton = document.createElement('input');
      Editbutton.type = "button";
      Editbutton.value = " Edit";
-
+    
+     
      // onclick delete function
 
-       deletebutton.onclick = () => {
-        // deleting from local storage
-       localStorage.removeItem(obj.email);
-       // deleting li from ul
-       parentElem.removeChild(childELem);
+        deletebutton.onclick = () => {
+        parentElem.removeChild(childELem);
+        removefrombackend(obj);
+
+          // deleting from local storage
+
+          // localStorage.removeItem(obj.email);
+
+          // deleting li from ul
+          //parentElem.removeChild(childELem);
 
      }
  
      // onclick Edit function
           Editbutton.onclick = () => {
+          
+            console.log("Successfully edited msg & below msg is for deleting it from backend")
              // deleting from local storage
-          localStorage.removeItem(obj.email);
+             
+            // localStorage.removeItem(obj.email);
+
            // deleting li from ul 
           parentElem.removeChild(childELem);
 
@@ -116,7 +137,7 @@ function saveToLocalStorage(event)
           AddressInput.value = obj.Address;
           TimeInput.value = obj.time;
           DateInput.value = obj.date;
-
+          removefrombackend(obj);
 
       }
 
@@ -144,7 +165,7 @@ function saveToLocalStorage(event)
 
    }
 
-
+  
 
 
  // Listen for form submit
