@@ -34,8 +34,30 @@ function saveToLocalStorage(event)
 
    // converting object to its real values using JSON.stringify method ,,, and reverse it back as old object 
    // by using JSON.parse(obj)  
-    localStorage.setItem(obj.email , JSON.stringify(obj));
-    showUserData(obj);
+     
+        
+                //  localStorage.setItem(obj.email , JSON.stringify(obj));
+                // showUserData(obj);
+
+
+             //  commenting the locaL storage and making call to crud sever using axios api
+             
+             
+             axios.post("https://crudcrud.com/api/9d3033edfa144854bb89e3514638bb08/BookAnAppointment",obj)
+              .then((response)=>
+              {
+                showUserData(response.data);
+               // console.log(response);
+              }).catch((err) =>
+              {
+                document.body.innerHTML = document.body.innerHTML + "<h4>Some Error Happened</h4>";
+                console.log(err);
+              })
+
+
+            
+            
+
  }
 
 
