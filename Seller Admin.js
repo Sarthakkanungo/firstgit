@@ -1,11 +1,11 @@
-const Url = "https://crudcrud.com/api/03f88475b9b540d29a08f58460bed086";
+const Url = "https://crudcrud.com/api/6d43d8bb24fb4d7b8a79df2673a78e47";
 
 function AdminPanel(event)
 {
     event.preventDefault();
     const sellingprice = event.target.Selling.value;
     const productname = event.target.Product.value;
-    const category = event.target.categories.value;
+    const category = event.target.category.value;
 
     const obj= {
         sellingprice,
@@ -54,30 +54,30 @@ function paneldetails(obj)
    
     const Electron = document.getElementById('electronic');
    
-    if(obj.category == "Electronic Items")
+    if(obj.category == "ElectronicItems")
     {
         const child = 
-    `<li ${obj._id}> ${obj.sellingprice}---${obj.productname}---${obj.category}
-    <button onclick=RemoveItem('${obj._id}')> delete </button>
+    `<li id=${obj._id}> ${obj.sellingprice}---${obj.productname}---${obj.category}
+    <button onclick=RemoveItem('${obj._id}','${obj.category}')> delete </button>
     </li>`
         Electron.innerHTML = Electron.innerHTML + child;
        
     }
-    else if(obj.category == "Food Item")
+    else if(obj.category == "FoodItem")
     {
         const child = 
-        `<li ${obj._id}> ${obj.sellingprice}---${obj.productname}---${obj.category}
-        <button onclick=RemoveItem('${obj._id}')> delete </button>
+        `<li id=${obj._id}> ${obj.sellingprice}---${obj.productname}---${obj.category}
+        <button onclick=RemoveItem('${obj._id}','${obj.category}')> delete </button>
         </li>`
         fooditem.innerHTML = fooditem.innerHTML + child;
       
     }
 
-    else (obj.category == "Skin care")
+    else if(obj.category == "Skincare")
     { 
         const child = 
-        `<li ${obj._id}> ${obj.sellingprice}---${obj.productname}---${obj.category}
-        <button onclick=RemoveItem('${obj._id}')> delete </button>
+        `<li id=${obj._id}> ${obj.sellingprice}---${obj.productname}---${obj.category}
+        <button onclick=RemoveItem('${obj._id}','${obj.category}')> delete </button>
         </li>`
         
         skinitem.innerHTML = skinitem.innerHTML + child;
@@ -86,16 +86,40 @@ function paneldetails(obj)
 
 }
 
-function RemoveItem(obj)
+function RemoveItem(userid,category)
 {
 
-   
-    axios.delete(`${Url}/adminpanel/${obj}`)
+    axios.delete(`${Url}/adminpanel/${userid}`)
         .then((res)=>{
-        console.log("successfully deleted" + res);
+            removefromscreen(userid,category);
+            console.log("successfully deleted" + res.data);
+        
         }).catch((err) =>
         {
-        console.log(" Finding Difficult to delete user from backend ")
+
+        console.log("Finding Difficult to delete user from backend ")
+
         })
 
+       
+
  } 
+
+ function removefromscreen(userid,category)
+ {
+    if(category==="ElectronicItems")
+        {
+            var parent = document.getElementById('electronic');
+        }
+   else if(category==="FoodItem")
+        {
+            var parent = document.getElementById('food');
+        }
+  else if(category==="Skincare")
+        {
+            var parent = document.getElementById('skin');
+        }
+
+     const childTobeDeleted = document.getElementById(userid);
+     parent.removeChild(childTobeDeleted);
+ }
