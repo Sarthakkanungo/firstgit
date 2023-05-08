@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Admin</title>
+</head>
+
+<body>
+    <form onsubmit="AdminPanel(event)">
+        <label for="Sp">Selling price</label>
+        <input type="number" id="Sp" name="Selling" required>
+        <label for="Pr">Product Name</label>
+        <input type="text" id="Pr" name="Product" required>
+        <label for="Ct"> Choose a category</label>
+        <select name="categories" id="Ct">
+            <option value="Electronic Items">Electronic Items</option>
+            <option value="Food Item">Food Item</option>
+            <option value="Skin care">Skin care</option>
+        </select>
+        <input type="submit" value="Add item">
+
+    </form>
+
+    <h2>Food Item</h2>
+    <ul id="food">
+
+    </ul>
+
+    <h2>Electronic Items</h2>
+    <ul id="electronic">
+
+
+    </ul>
+
+    <h2>Skin care</h2>
+    <ul id="skin">
+
+    </ul>
+
+
+    <script src="Seller Admin.js"></script>
+    <Script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></Script>
+</body>
+
+</html>
