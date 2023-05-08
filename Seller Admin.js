@@ -1,6 +1,7 @@
+
 const Url = "https://crudcrud.com/api/6d43d8bb24fb4d7b8a79df2673a78e47";
 
-function AdminPanel(event)
+async function AdminPanel(event)
 {
     event.preventDefault();
     const sellingprice = event.target.Selling.value;
@@ -11,33 +12,27 @@ function AdminPanel(event)
         sellingprice,
         productname,
         category
-    }
+    };
 
-    axios.post(`${Url}/adminpanel`, obj)
-   
-    .then((response) => {
+    try {
+        const response = await axios.post(`${Url}/adminpanel`, obj);
         console.log(response);
         paneldetails(response.data);
-    })
-
-    .catch((err) => {
-        console.log(err)
-    })
+    } catch (err) {
+        console.log(err);
+    }
 };
 
-window.addEventListener("DOMContentLoaded" , ()=>{
-    axios.get(`${Url}/adminpanel`)
-    .then((response) => {
-        console.log(response)
-
+window.addEventListener("DOMContentLoaded" , async ()=>{
+    try {
+        const response = await axios.get(`${Url}/adminpanel`);
+        console.log(response);
         for (var i=0; i<response.data.length; i++) {
-           paneldetails(response.data[i])
+           paneldetails(response.data[i]);
         }
-    })
-
-    .catch((error) => {
-        console.log(error)
-    })
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 
@@ -47,13 +42,10 @@ function paneldetails(obj)
     document.getElementById('Pr').value="";
     document.getElementById('Ct').value="";
 
-   
-    
     const fooditem = document.getElementById('food');
     const skinitem = document.getElementById('skin');
-   
     const Electron = document.getElementById('electronic');
-   
+
     if(obj.category == "ElectronicItems")
     {
         const child = 
@@ -86,26 +78,19 @@ function paneldetails(obj)
 
 }
 
-function RemoveItem(userid,category)
+async function RemoveItem(userid,category)
 {
 
-    axios.delete(`${Url}/adminpanel/${userid}`)
-        .then((res)=>{
-            removefromscreen(userid,category);
-            console.log("successfully deleted" + res.data);
-        
-        }).catch((err) =>
-        {
-
-        console.log("Finding Difficult to delete user from backend ")
-
-        })
-
-       
-
+    try {
+        const res = await axios.delete(`${Url}/adminpanel/${userid}`);
+        removefromscreen(userid, category);
+        console.log("successfully deleted" + res.data);
+    } catch (err) {
+        console.log("Finding Difficult to delete user from backend ");
+    }
  } 
 
- function removefromscreen(userid,category)
+function removefromscreen(userid,category)
  {
     if(category==="ElectronicItems")
         {

@@ -34,7 +34,7 @@ function saveToLocalStorage(event)
      const parentElem = document.getElementById('users');
      const childELem = document.createElement('li');
      childELem.textContent = obj.Expenseamt + ' _ ' + obj.describe + ' _ ' + obj.category + ' _ ' ;
- 
+
  
      const deletebutton = document.createElement('input');
      deletebutton.type = "button";
@@ -71,6 +71,7 @@ function saveToLocalStorage(event)
      // APPEND this button in "li " that is childElem and then into Ul with id users parentElem
       childELem.appendChild(deletebutton);
       childELem.appendChild( Editbutton);
+      
       parentElem.appendChild(childELem);
 
       
