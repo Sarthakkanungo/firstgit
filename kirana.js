@@ -1,6 +1,6 @@
 const url = "https://crudcrud.com/api/9ac823f6f1da47619015b7eac7bb9cec";
 
-let total = 0;
+let totalbillprice  = 0;
 
 async function InventoryList(event) {
     event.preventDefault();
@@ -122,8 +122,8 @@ function buyThree(itemid, quantity, price) {
 
 function totalPrice(cost)
 {  
-    total += cost;
+    totalbillprice += cost;
     const totalCostElement = document.getElementById('Totalcost');
-    totalCostElement.textContent = total;
+    totalCostElement.textContent = totalbillprice ;
 }
 
