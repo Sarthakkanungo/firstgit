@@ -1,4 +1,5 @@
-const Url = "https://crudcrud.com/api/6d43d8bb24fb4d7b8a79df2673a78e47";
+
+const Url = "https://crudcrud.com/api/c65a9301636e4f0a96551e7c4b4729b0";
 
 async function AdminPanel(event)
 {
@@ -15,8 +16,8 @@ async function AdminPanel(event)
 
     try {
         const response = await axios.post(`${Url}/adminpanel`, obj);
-        console.log(response);
-        paneldetails(response.data);
+        console.log(response.data);
+        printdetails(response.data);
     } catch (err) {
         console.log(err);
     }
@@ -27,7 +28,7 @@ window.addEventListener("DOMContentLoaded" , async ()=>{
         const response = await axios.get(`${Url}/adminpanel`);
         console.log(response);
         for (var i=0; i<response.data.length; i++) {
-           paneldetails(response.data[i]);
+           printdetails(response.data[i]);
         }
     } catch (error) {
         console.log(error);
@@ -35,7 +36,7 @@ window.addEventListener("DOMContentLoaded" , async ()=>{
 });
 
 
-function paneldetails(obj)
+function printdetails(obj)
 {
     document.getElementById('Sp').value="";
     document.getElementById('Pr').value="";
@@ -83,7 +84,9 @@ async function RemoveItem(userid,category)
     try {
         const res = await axios.delete(`${Url}/adminpanel/${userid}`);
         removefromscreen(userid, category);
-        console.log("successfully deleted" + res.data);
+        console.log("successfully deleted");
+        const newlist = await axios.get(`${Url}/adminpanel`);
+        console.log(newlist.data);
     } catch (err) {
         console.log("Finding Difficult to delete user from backend ");
     }
